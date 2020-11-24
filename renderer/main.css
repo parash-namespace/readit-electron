@@ -1,0 +1,99 @@
+html, body {
+  height: 100%;
+}
+
+body {
+  font: caption;
+  margin: 0;
+  display: flex;
+  flex-flow: column;
+}
+
+button {
+  background: dodgerblue;
+  color: white;
+  border-radius: 5px;
+  border: none;
+  font-size: 16px;
+  padding: 5px 10px;
+  outline: none;
+}
+
+input {
+  font-size: 16px;
+  border-radius: 5px;
+  border: 1px solid silver;
+  padding: 5px 10px;
+}
+
+input::placeholder {
+  color: lightgray;
+}
+
+header {
+  background: #11142d;
+  display: flex;
+  padding: 10px;
+  font-weight: bold;
+  border-bottom: 1px solid dodgerblue;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  height: 30px;
+}
+
+#show-modal {
+  margin-right: 10px;
+  font-size: 20px;
+}
+
+#search {
+  flex-grow: 1;
+  padding: 5px 10px;
+}
+
+#items {
+  flex-grow: 1
+}
+
+#no-items {
+  font-weight: bolder;
+  color: silver;
+  text-align: center;
+  width: 100%;
+  position: absolute;;
+  top: 100px;
+  z-index: -1;
+}
+
+#modal {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.85);
+  display: flex;
+  align-items: center;
+  align-content: center;
+  flex-wrap: wrap;
+  /* display: none; */
+}
+
+#url {
+  flex-grow: 1;
+  width: 100%;
+  margin: 0px 25px 15px;
+  padding: 5px 10px;
+}
+
+#modal button {
+  padding: 5px 10px;
+  margin-right: 5px;
+}
+
+#close-modal {
+  background: white;
+  color: black;
+  margin-left: 1px;
+}
+
+#add-item {
+  margin-left: 25px;
+}

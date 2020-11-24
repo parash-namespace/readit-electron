@@ -1,5 +1,6 @@
 // Modules
 const {app, BrowserWindow} = require('electron')
+const stateKeeper = require('electron-window-state')
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
@@ -8,14 +9,24 @@ let mainWindow
 // Create a new BrowserWindow when `app` is ready
 function createWindow () {
 
+  let state = stateKeeper({
+    defaultWidth: 500,
+    defaultHeight: 650
+  })
+
   mainWindow = new BrowserWindow({
-    width: 1000, height: 800,
+    x: state.x, y: state.y,
+    width: state.width, height: state.height,
+    minWidth: 400, maxWidth:650,
+    minHeight: 300,
     backgroundColor: '#2B2E3B',
     webPreferences: { nodeIntegration: true }
   })
 
   // Load index.html into the new BrowserWindow
   mainWindow.loadFile('renderer/main.html')
+
+  state.manage(mainWindow)
 
   // Open DevTools - Remove for PRODUCTION!
   // mainWindow.webContents.openDevTools();
