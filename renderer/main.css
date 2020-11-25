@@ -50,8 +50,9 @@ header {
   padding: 5px 10px;
 }
 
-#items {
-  flex-grow: 1
+main {
+  flex-grow: 1;
+  overflow-y: scroll;
 }
 
 #no-items {
@@ -96,4 +97,29 @@ header {
 
 #add-item {
   margin-left: 25px;
+}
+
+.read-item {
+  display: flex;
+  align-items: center;
+  align-content: center;
+  border-bottom: 2px solid lightgray;
+  background: #FAFAFA;
+  padding: 10px;
+  cursor: pointer;
+  border-left: 10px solid #888;
+  -webkit-user-select: none;
+}
+
+.read-item:hover {
+  border-left: 10px solid #EEE;
+}
+
+.read-item.selected {
+  border-left: 10px solid dodgerblue;
+}
+
+.read-item img {
+  width: 80px;
+  margin-right: 25px;
 }
