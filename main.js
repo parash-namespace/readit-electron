@@ -26,7 +26,7 @@ function createWindow () {
     width: state.width, height: state.height,
     minWidth: 400, maxWidth:650,
     minHeight: 300,
-    backgroundColor: '#2B2E3B',
+    backgroundColor: 'lightgray',
     webPreferences: { nodeIntegration: true }
   })
 

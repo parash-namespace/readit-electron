@@ -1,6 +1,15 @@
 const { ipcRenderer } = require('electron')
 const items = require('./items')
 
+window.newItem = () => {
+	showModal.click()
+}
+window.openItem = items.open
+window.deleteItem = () => {
+	let selectedItem = items.getSelectedItem()
+	items.delete(selectedItem.index)
+}
+
 let closeModal = document.getElementById('close-modal')
 showModal = document.getElementById('show-modal')
 modal = document.getElementById('modal')

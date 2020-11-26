@@ -38,6 +38,7 @@ exports.addItem = (item, isNew = false) => {
 	}
 }
 
+
 exports.save = () => localStorage.setItem('readit-items', JSON.stringify(this.storage))
 
 exports.delete = (itemIndex) => {
