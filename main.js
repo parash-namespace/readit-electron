@@ -2,6 +2,8 @@
 const {app, BrowserWindow, ipcMain} = require('electron')
 const stateKeeper = require('electron-window-state')
 const readItem = require('./readItem')
+var path = require('path')
+
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
@@ -27,6 +29,7 @@ function createWindow () {
     minWidth: 400, maxWidth:650,
     minHeight: 300,
     backgroundColor: 'lightgray',
+    icon: path.join(__dirname, 'assets', 'icon.png'),
     webPreferences: { nodeIntegration: true }
   })
 
