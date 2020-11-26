@@ -29,7 +29,7 @@ function createWindow () {
     minWidth: 400, maxWidth:650,
     minHeight: 300,
     backgroundColor: 'lightgray',
-    icon: path.join(__dirname, 'assets', 'icon.png'),
+    icon: path.join(__dirname, 'icons', 'icon.png'),
     webPreferences: { nodeIntegration: true }
   })
 

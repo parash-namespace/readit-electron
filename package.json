@@ -5,7 +5,28 @@
   "main": "main.js",
   "scripts": {
     "start": "electron .",
-    "watch": "nodemon --exec electron ."
+    "watch": "nodemon --exec electron .",
+    "mac": "electron-builder -m",
+    "linux": "electron-builder -l",
+    "win": "electron-builder -w",
+    "build": "electron-builder -mwl",
+    "cert": "electron-builder create-self-signed-cert -p TestPub"
+  },
+  "build": {
+    "appId": "com.domain.subdomain",
+    "directories": {
+      "buildResources": "."
+    },
+    "mac": {
+      "category": "public.app-category.productivity",
+      "target": "dmg"
+    },
+    "win": {
+      "publisher_name": "TestPub"
+    },
+    "linux": {
+      "category": "Network"
+    }
   },
   "repository": "https://github.com/stackacademytv/master-electron",
   "keywords": [
@@ -17,6 +38,7 @@
   "license": "CC0-1.0",
   "devDependencies": {
     "electron": "^9.0.0",
+    "electron-builder": "^22.9.1",
     "nodemon": "^2.0.0"
   },
   "dependencies": {
