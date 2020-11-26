@@ -6,6 +6,14 @@ fs.readFile(`${__dirname}/reader.js`, (err, data) => {
 	readerJS = data.toString()
 })
 
+window.addEventListener('message', e => {
+
+	if(e.data.action == 'delete-reader-item'){
+		this.delete(e.data.itemIndex)
+		e.source.close()
+	}
+})
+
 exports.storage = JSON.parse(localStorage.getItem('readit-items')) || []
 
 exports.addItem = (item, isNew = false) => {
@@ -26,15 +34,25 @@ exports.addItem = (item, isNew = false) => {
 
 	if(isNew){
 		this.storage.push(item)
-		localStorage.setItem('readit-items', JSON.stringify(this.storage))
+		this.save()
 	}
+}
+
+exports.save = () => localStorage.setItem('readit-items', JSON.stringify(this.storage))
+
+exports.delete = (itemIndex) => {
+	items.removeChild( items.childNodes[itemIndex] )
+	this.storage.splice((itemIndex - 1), 1)
+	this.save()
+
+	document.getElementsByClassName('read-item')[0].classList.add('selected')
 }
 
 exports.open = () => {
 	if(!this.storage.length) return
 
-	let selectedItem = document.getElementsByClassName('read-item selected')[0]
-	let contentURL = selectedItem.dataset.url
+	let selectedItem = this.getSelectedItem()
+	let contentURL = selectedItem.url
 
 	let readerWindow = window.open(contentURL, '', `
 		maxWidth=2000,
@@ -45,13 +63,21 @@ exports.open = () => {
 		nodeIntegration=0,
 		contextIsolation=1
 	`)
+	readerWindow.eval(readerJS.replace('{{index}}', selectedItem.index))
+}
 
-	readerWindow.eval(readerJS)
+exports.getSelectedItem = () => {
+	let currentItem = document.getElementsByClassName('read-item selected')[0]
+	let itemIndex = 0
+	let child = currentItem
 
+	while( ((child = child.previousSibling) != null )){ itemIndex = itemIndex + 1 }
+
+	return { node: currentItem, index: itemIndex, url: currentItem.dataset.url }
 }
 
 exports.select = selected => {
-	document.getElementsByClassName('read-item selected')[0].classList.remove('selected')
+	this.getSelectedItem().node.classList.remove('selected')
 	selected.currentTarget.classList.add('selected')
 }
 
